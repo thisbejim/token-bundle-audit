@@ -65,7 +65,7 @@ def main(argv: list[str] | None = None) -> int:
         return 2
     report = audit_bundle(args.bundle)
     if args.format == "json":
-        print(json.dumps(report.as_dict(), indent=2, sort_keys=True))
+        print(json.dumps(report.as_dict(strict=args.strict), indent=2, sort_keys=True))
     elif args.format == "sarif":
         print(json.dumps(_sarif(report), indent=2, sort_keys=True))
     else:

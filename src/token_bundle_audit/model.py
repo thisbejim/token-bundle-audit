@@ -46,10 +46,11 @@ class AuditReport:
     def ok(self, *, strict: bool = False) -> bool:
         return not self.errors and (not strict or not self.warnings)
 
-    def as_dict(self) -> dict[str, Any]:
+    def as_dict(self, *, strict: bool = False) -> dict[str, Any]:
         return {
             "root": self.root,
-            "ok": self.ok(),
+            "ok": self.ok(strict=strict),
+            "strict": strict,
             "summary": {
                 "errors": len(self.errors),
                 "warnings": len(self.warnings),

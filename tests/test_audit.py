@@ -62,6 +62,21 @@ class AuditTests(unittest.TestCase):
             (path / "vocab.json").write_text('{"x": 0}', encoding="utf-8")
             self.assertEqual(1, main(["check", str(path), "--strict", "--format", "json"]))
 
+    def test_strict_json_reports_failure_state(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory)
+            (path / "config.json").write_text('{"vocab_size": 1}', encoding="utf-8")
+            (path / "vocab.json").write_text('{"x": 0}', encoding="utf-8")
+            import contextlib
+            import io
+
+            stream = io.StringIO()
+            with contextlib.redirect_stdout(stream):
+                main(["check", str(path), "--strict", "--format", "json"])
+            payload = json.loads(stream.getvalue())
+            self.assertFalse(payload["ok"])
+            self.assertTrue(payload["strict"])
+
 
 if __name__ == "__main__":
     unittest.main()
