@@ -1,0 +1,7 @@
+{
+  "model": {"type": "BPE", "vocab": {"<bos>": 0, "<eos>": 1, "hello": 2}},
+  "added_tokens": [
+    {"id": 3, "content": "<tool>", "special": true},
+    {"id": 3, "content": "<other>", "special": true}
+  ]
+}

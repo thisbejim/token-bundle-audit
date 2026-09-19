@@ -1,0 +1,7 @@
+{
+  "tokenizer_class": "ToyTokenizer",
+  "bos_token": "<bos>",
+  "eos_token": "<eos>",
+  "pad_token": "<pad>",
+  "chat_template": "{%- for message in messages %}{{ message['role'] }}: {{ message['content'] }}\\n{%- endfor %}{%- if add_generation_prompt %}assistant: {%- endif %}"
+}

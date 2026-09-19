@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "token-bundle-audit"
+version = "0.1.0"
+description = "Offline release gates for Hugging Face tokenizer and chat-template bundles"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "thisbejim"}]
+keywords = ["llm", "tokenizer", "huggingface", "chat-template", "inference", "ai-infrastructure", "testing", "cli"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Software Development :: Testing",
+]
+dependencies = []
+
+[project.scripts]
+token-bundle-audit = "token_bundle_audit.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/thisbejim/token-bundle-audit"
+Repository = "https://github.com/thisbejim/token-bundle-audit"
+Issues = "https://github.com/thisbejim/token-bundle-audit/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

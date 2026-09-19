@@ -1,0 +1,5 @@
+{
+  "bos_token": "<missing>",
+  "eos_token": {"content": "<eos>", "id": 1},
+  "chat_template": "{% for message in messages %}{{ message['content'].lower() }}{% endfor %}"
+}
